@@ -6,6 +6,10 @@ const customers = {
 };
 
 async function findCustomer(customerId) {
+  if (!Object.prototype.hasOwnProperty.call(customers, customerId)) {
+    return undefined;
+  }
+
   return customers[customerId];
 }
 
