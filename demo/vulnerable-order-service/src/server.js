@@ -10,8 +10,9 @@ app.post("/api/orders", async (req, res) => {
     res.status(201).json(order);
   } catch (error) {
   console.error("Order processing failed:", error);
-  res.status(500).json({
-    error: "Internal server error"
+
+  res.status(error.status || 500).json({
+    error: error.status ? error.message : "Internal server error"
   });
 }
 });
