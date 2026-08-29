@@ -9,11 +9,11 @@ app.post("/api/orders", async (req, res) => {
     const order = await processOrder(req.body);
     res.status(201).json(order);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      error: error.message
-    });
-  }
+  console.error("Order processing failed:", error);
+  res.status(500).json({
+    error: "Internal server error"
+  });
+}
 });
 
 app.get("/health", (req, res) => {
